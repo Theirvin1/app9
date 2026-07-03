@@ -1,0 +1,29 @@
+### ====================================================================
+### SUITE DE PRUEBAS DE ENDPOINTS - ENTORNO ESTÁNDAR
+### ====================================================================
+
+### 1. Intentar acceder al listado sin sesión activa (Debe retornar Redirección HTTP 302)
+GET http://localhost:8080/materias
+Accept: text/html
+
+###
+
+### 2. Procesar formulario de inicio de sesión de forma fallida (Debe retornar HTTP 401)
+POST http://localhost:8080/login
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=ClaveIncorrecta
+
+###
+
+### 3. Procesar inicio de sesión exitoso con el Usuario Semilla Obligatorio
+POST http://localhost:8080/login
+Content-Type: application/x-www-form-urlencoded
+
+username=admin&password=Admin*2026
+
+###
+
+### 4. Visualizar la tabla HTML de materias (Exige haber ejecutado la prueba 3 previa)
+GET http://localhost:8080/materias
+Accept: text/html
